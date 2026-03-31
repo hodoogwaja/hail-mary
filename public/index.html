@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로젝트 인프런메리 | 그레이스 박사의 비밀 커리큘럼</title>
+  <meta name="description" content="만약 그레이스 박사에게 인프런이 있었다면? 비밀 학습 미션이 기밀 해제되었습니다.">
+  <meta property="og:title" content="프로젝트 인프런메리 | 그레이스 박사의 비밀 커리큘럼">
+  <meta property="og:description" content="만약 그레이스 박사에게 인프런이 있었다면? 비밀 학습 미션이 기밀 해제되었습니다.">
+  <meta property="og:type" content="website">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Space+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-deep: #030311;
+      --bg-card: #0a0a1e;
+      --bg-card-inner: #07071a;
+      --accent-cyan: #00e5ff;
+      --accent-green: #39ff14;
+      --accent-orange: #ff6b2b;
+      --accent-pink: #ff2d78;
+      --accent-purple: #a855f7;
+      --accent-gold: #fbbf24;
+      --text-primary: #e8e8f0;
+      --text-muted: #8888aa;
+      --text-dim: #555570;
+      --font-display: 'Orbitron', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'Noto Sans KR', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── Deep Space Background ── */
+    .space-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background:
+        /* 은하수 밴드 — 대각선 */
+        linear-gradient(135deg,
+          transparent 25%,
+          rgba(100, 80, 160, 0.015) 35%,
+          rgba(60, 100, 180, 0.025) 42%,
+          rgba(100, 80, 160, 0.02) 50%,
+          transparent 60%),
+        /* 깊은 우주 그래디언트 */
+        radial-gradient(ellipse 120% 80% at 20% 80%, rgba(10, 5, 40, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 60% at 80% 20%, rgba(5, 15, 40, 0.6) 0%, transparent 50%),
+        var(--bg-deep);
+    }
+
+    /* ── Tau Ceti (타우 세티 항성) ── */
+    .tau-ceti {
+      position: fixed;
+      top: 8vh;
+      right: 12vw;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff8e7;
+      z-index: 0;
+      pointer-events: none;
+      box-shadow:
+        0 0 4px 2px rgba(255, 248, 231, 0.9),
+        0 0 15px 6px rgba(255, 230, 180, 0.5),
+        0 0 40px 15px rgba(255, 220, 150, 0.2),
+        0 0 80px 30px rgba(255, 200, 100, 0.08),
+        0 0 160px 60px rgba(255, 180, 80, 0.03);
+      animation: tau-pulse 4s ease-in-out infinite;
+    }
+
+    .tau-ceti::after {
+      content: 'τ Ceti — 11.9 ly';
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: rgba(255, 230, 180, 0.25);
+      white-space: nowrap;
+    }
+
+    /* 타우 세티 십자 광선 (디프랙션 스파이크) */
+    .tau-ceti::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      background:
+        linear-gradient(0deg, transparent 46%, rgba(255, 240, 200, 0.08) 49%, rgba(255, 248, 231, 0.15) 50%, rgba(255, 240, 200, 0.08) 51%, transparent 54%),
+        linear-gradient(90deg, transparent 46%, rgba(255, 240, 200, 0.08) 49%, rgba(255, 248, 231, 0.15) 50%, rgba(255, 240, 200, 0.08) 51%, transparent 54%),
+        linear-gradient(45deg, transparent 47%, rgba(255, 240, 200, 0.04) 49.5%, rgba(255, 248, 231, 0.06) 50%, rgba(255, 240, 200, 0.04) 50.5%, transparent 53%),
+        linear-gradient(-45deg, transparent 47%, rgba(255, 240, 200, 0.04) 49.5%, rgba(255, 248, 231, 0.06) 50%, rgba(255, 240, 200, 0.04) 50.5%, transparent 53%);
+      pointer-events: none;
+    }
+
+    @keyframes tau-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.85;
+        transform: scale(1.08);
+      }
+    }
+
+    /* ── 성운 (Nebula Clouds) ── */
+    .nebula {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nebula::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vh;
+      background: radial-gradient(ellipse at center,
+          rgba(80, 40, 140, 0.04) 0%,
+          rgba(40, 60, 150, 0.03) 30%,
+          rgba(0, 100, 180, 0.015) 50%,
+          transparent 70%);
+      filter: blur(60px);
+      animation: nebula-drift 120s ease-in-out infinite alternate;
+    }
+
+    .nebula::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -15%;
+      width: 60vw;
+      height: 50vh;
+      background: radial-gradient(ellipse at center,
+          rgba(0, 229, 255, 0.02) 0%,
+          rgba(57, 255, 20, 0.01) 40%,
+          transparent 70%);
+      filter: blur(80px);
+      animation: nebula-drift 150s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes nebula-drift {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(30px, -20px) rotate(3deg);
+      }
+    }
+
+    /* ── Starfield (3 Layers) ── */
+    .starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .starfield .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200%;
+    }
+
+    /* 먼 별 — 작고 많은 */
+    .starfield .layer-1 {
+      background:
+        radial-gradient(0.8px 0.8px at 3% 12%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(0.8px 0.8px at 8% 67%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 12% 34%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(0.8px 0.8px at 18% 89%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 23% 45%, rgba(200, 220, 255, 0.5), transparent),
+        radial-gradient(0.8px 0.8px at 28% 5%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(0.8px 0.8px at 33% 72%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 38% 28%, rgba(255, 240, 200, 0.4), transparent),
+        radial-gradient(0.8px 0.8px at 42% 56%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(0.8px 0.8px at 48% 91%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 53% 15%, rgba(200, 200, 255, 0.6), transparent),
+        radial-gradient(0.8px 0.8px at 58% 43%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(0.8px 0.8px at 63% 78%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 68% 22%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(0.8px 0.8px at 73% 61%, rgba(255, 220, 180, 0.4), transparent),
+        radial-gradient(0.8px 0.8px at 78% 8%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 83% 50%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(0.8px 0.8px at 88% 85%, rgba(200, 220, 255, 0.5), transparent),
+        radial-gradient(0.8px 0.8px at 93% 37%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 97% 70%, rgba(255, 255, 255, 0.5), transparent);
+      animation: drift 80s linear infinite;
+    }
+
+    /* 중간 별 — 약간 크고 밝은 */
+    .starfield .layer-2 {
+      background:
+        radial-gradient(1.5px 1.5px at 5% 25%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1.2px 1.2px at 15% 55%, rgba(0, 229, 255, 0.5), transparent),
+        radial-gradient(1.5px 1.5px at 25% 80%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1.2px 1.2px at 35% 15%, rgba(255, 240, 200, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 45% 65%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1.2px 1.2px at 55% 35%, rgba(200, 200, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 65% 90%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1.2px 1.2px at 72% 48%, rgba(57, 255, 20, 0.3), transparent),
+        radial-gradient(1.5px 1.5px at 82% 18%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1.2px 1.2px at 92% 72%, rgba(0, 229, 255, 0.4), transparent);
+      animation: drift 110s linear infinite;
+    }
+
+    /* 가까운 밝은 별 — 반짝임 */
+    .starfield .layer-3 {
+      background:
+        radial-gradient(2px 2px at 7% 40%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(2.5px 2.5px at 22% 18%, rgba(200, 220, 255, 1), transparent),
+        radial-gradient(2px 2px at 40% 75%, rgba(255, 240, 200, 0.8), transparent),
+        radial-gradient(2.5px 2.5px at 60% 10%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(2px 2px at 75% 55%, rgba(200, 200, 255, 0.8), transparent),
+        radial-gradient(2.5px 2.5px at 90% 85%, rgba(255, 248, 231, 0.9), transparent);
+      animation: drift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-50%);
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      33% {
+        opacity: 0.6;
+      }
+
+      66% {
+        opacity: 0.9;
+      }
+    }
+
+    /* ── Layout ── */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Image Slots ── */
+    .img-slot {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .img-slot img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .img-slot.hero-img {
+      margin-top: 48px;
+    }
+
+    .img-slot.intro-img {
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+
+    .img-slot.rocky-before {
+      padding-top: 40px;
+      padding-bottom: 0;
+    }
+
+    .img-slot.rocky-after {
+      padding-top: 0;
+      padding-bottom: 40px;
+    }
+
+    /* ── Classified Banner ── */
+    .classified-bar {
+      background: repeating-linear-gradient(90deg, var(--accent-orange) 0px, var(--accent-orange) 20px, #1a1a2e 20px, #1a1a2e 40px);
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    .classified-bar span {
+      background: #1a1a2e;
+      padding: 4px 32px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      font-weight: 700;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--accent-orange);
+      color: var(--accent-orange);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 4px;
+      padding: 6px 20px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+
+      0%,
+      100% {
+        border-color: var(--accent-orange);
+        box-shadow: 0 0 0 rgba(255, 107, 43, 0);
+      }
+
+      50% {
+        border-color: var(--accent-orange);
+        box-shadow: 0 0 20px rgba(255, 107, 43, 0.2);
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .text-cyan {
+      color: var(--accent-cyan);
+    }
+
+    .hero h1 .text-green {
+      color: var(--accent-green);
+      text-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+    }
+
+    .hero-sub {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+    }
+
+    .hero-quote {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.9;
+      word-break: keep-all;
+    }
+
+    .hero-quote em {
+      color: var(--accent-cyan);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .intro p {
+      max-width: 620px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 2;
+      word-break: keep-all;
+    }
+
+    .intro .highlight-line {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .divider span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 8px;
+    }
+
+    /* ── Mission Cards ── */
+    .missions {
+      padding: 20px 24px 60px;
+    }
+
+    .missions-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .missions-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .missions-header p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    .mission-card {
+      background: var(--bg-card);
+      border: 1px solid #1a1a30;
+      padding: 40px 36px;
+      margin-bottom: 36px;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .mission-card .accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+    }
+
+    .m1 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-cyan), transparent);
+    }
+
+    .m2 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-green), transparent);
+    }
+
+    .m3 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-orange), transparent);
+    }
+
+    .m4 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-pink), transparent);
+    }
+
+
+
+    .m5 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-purple), transparent);
+    }
+
+    .mission-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .mission-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .m1 h3 {
+      color: var(--accent-cyan);
+    }
+
+    .m2 h3 {
+      color: var(--accent-green);
+    }
+
+    .m3 h3 {
+      color: var(--accent-orange);
+    }
+
+    .m4 h3 {
+      color: var(--accent-pink);
+    }
+
+
+
+    .m5 h3 {
+      color: var(--accent-purple);
+    }
+
+    .mission-card .scenario {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    /* ── What-If Block ── */
+    .what-if {
+      background: var(--bg-card-inner);
+      border: 1px solid #15152a;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .what-if-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fake-cite {
+      display: block;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .fake-cite::before {
+      content: '📎 ';
+      font-style: normal;
+    }
+
+    .stat-inline {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 2px 8px;
+      margin: 0 2px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .m1 .stat-inline {
+      color: var(--accent-cyan);
+    }
+
+    .m2 .stat-inline {
+      color: var(--accent-green);
+    }
+
+    .m3 .stat-inline {
+      color: var(--accent-orange);
+    }
+
+    .m4 .stat-inline {
+      color: var(--accent-pink);
+    }
+
+
+
+    .m5 .stat-inline {
+      color: var(--accent-purple);
+    }
+
+    .m1 .what-if-label {
+      color: var(--accent-cyan);
+    }
+
+    .m2 .what-if-label {
+      color: var(--accent-green);
+    }
+
+    .m3 .what-if-label {
+      color: var(--accent-orange);
+    }
+
+    .m4 .what-if-label {
+      color: var(--accent-pink);
+    }
+
+
+
+    .m5 .what-if-label {
+      color: var(--accent-purple);
+    }
+
+    .what-if p {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    .what-if code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      color: var(--accent-orange);
+    }
+
+    .what-if p+p {
+      margin-top: 10px;
+    }
+
+    .what-if strong {
+      font-weight: 700;
+    }
+
+    .m1 .what-if strong {
+      color: var(--accent-cyan);
+    }
+
+    .m2 .what-if strong {
+      color: var(--accent-green);
+    }
+
+    .m3 .what-if strong {
+      color: var(--accent-orange);
+    }
+
+    .m4 .what-if strong {
+      color: var(--accent-pink);
+    }
+
+
+
+
+    .m5 .what-if strong {
+      color: var(--accent-purple);
+    }
+
+    /* ── AI Boost Block ── */
+    .ai-boost {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-boost::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ai-boost-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .ai-boost p {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    .ai-boost p+p {
+      margin-top: 10px;
+    }
+
+    .ai-boost strong {
+      font-weight: 700;
+    }
+
+    .m1 .ai-boost strong {
+      color: var(--accent-cyan);
+    }
+
+    .m2 .ai-boost strong {
+      color: var(--accent-green);
+    }
+
+    .m3 .ai-boost strong {
+      color: var(--accent-orange);
+    }
+
+    .m4 .ai-boost strong {
+      color: var(--accent-pink);
+    }
+
+
+    .m5 .ai-boost strong {
+      color: var(--accent-purple);
+    }
+
+    .ai-boost code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      color: var(--accent-purple);
+    }
+
+    .ai-boost .stat-inline {
+      color: var(--accent-purple);
+    }
+
+    .ai-prompt-example {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 2px solid var(--accent-purple);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .ai-prompt-example .prompt-prefix {
+      color: var(--accent-purple);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+    }
+
+    .ai-boost,
+    .ai-prompt-example {
+      /* responsive handled below */
+    }
+
+
+    /* ── Course Cards ── */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .course-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-height: 72px;
+    }
+
+    .course-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .course-card .cc-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+    }
+
+    .course-card .cc-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .course-card .cc-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.5;
+      word-break: keep-all;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .course-card .cc-arrow {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .course-card:hover .cc-arrow {
+      transform: translateX(3px);
+    }
+
+    .m1 .course-card:hover {
+      border-color: rgba(0, 229, 255, 0.25);
+    }
+
+    .m1 .course-card:hover .cc-arrow {
+      color: var(--accent-cyan);
+    }
+
+    .m2 .course-card:hover {
+      border-color: rgba(57, 255, 20, 0.25);
+    }
+
+    .m2 .course-card:hover .cc-arrow {
+      color: var(--accent-green);
+    }
+
+    .m3 .course-card:hover {
+      border-color: rgba(255, 107, 43, 0.25);
+    }
+
+    .m3 .course-card:hover .cc-arrow {
+      color: var(--accent-orange);
+    }
+
+    .m4 .course-card:hover {
+      border-color: rgba(255, 45, 120, 0.25);
+    }
+
+    .m5 .course-card:hover {
+      border-color: rgba(168, 85, 247, 0.25);
+    }
+
+    .m5 .course-card:hover .cc-arrow {
+      color: var(--accent-purple);
+    }
+
+    .m6 .accent-bar {
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+    }
+
+    .m6 h3 {
+      color: var(--accent-gold);
+    }
+
+    .m6 .stat-inline {
+      color: var(--accent-gold);
+    }
+
+    .m6 .what-if-label {
+      color: var(--accent-gold);
+    }
+
+    .m6 .what-if strong {
+      color: var(--accent-gold);
+    }
+
+    .m6 .ai-boost strong {
+      color: var(--accent-gold);
+    }
+
+    .m6 .tag {
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      color: var(--accent-gold);
+    }
+
+    .m6 .course-card:hover {
+      border-color: rgba(251, 191, 36, 0.25);
+    }
+
+    .m6 .course-card:hover .cc-arrow {
+      color: var(--accent-gold);
+    }
+
+    .m4 .course-card:hover .cc-arrow {
+      color: var(--accent-pink);
+    }
+
+
+    .course-card .cc-meta {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      margin-top: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Chart Block ── */
+    .chart-block {
+      background: var(--bg-card-inner);
+      border: 1px solid #15152a;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .chart-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* Horizontal bar chart */
+    .h-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .h-bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 48px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .h-bar-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+      word-break: keep-all;
+    }
+
+    .h-bar-track {
+      height: 24px;
+      background: rgba(255, 255, 255, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .h-bar-fill {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: bar-grow 1.2s ease-out forwards;
+      transform-origin: left;
+    }
+
+    @keyframes bar-grow {
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .h-bar-value {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Comparison chart (before/after) */
+    .compare-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .compare-row {}
+
+    .compare-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .compare-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .compare-bar-wrap {
+      display: grid;
+      grid-template-columns: 60px 1fr 40px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-bar-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-align: right;
+    }
+
+    .compare-bar-tag.before {
+      color: var(--text-dim);
+    }
+
+    .compare-bar-tag.after {
+      color: var(--accent-green);
+    }
+
+    .compare-track {
+      height: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .compare-fill {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: bar-grow 1s ease-out forwards;
+    }
+
+    .compare-fill.before-fill {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .compare-val {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    /* Donut / ring stat */
+    .stat-rings {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-ring {
+      text-align: center;
+      width: 120px;
+    }
+
+    .stat-ring svg {
+      width: 100px;
+      height: 100px;
+      transform: rotate(-90deg);
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .stat-ring circle {
+      fill: none;
+      stroke-width: 6;
+    }
+
+    .stat-ring .ring-bg {
+      stroke: rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-ring .ring-fill {
+      stroke-dasharray: 251.2;
+      animation: ring-draw 1.5s ease-out forwards;
+    }
+
+    @keyframes ring-draw {
+      from {
+        stroke-dashoffset: 251.2;
+      }
+    }
+
+    .stat-ring .ring-label {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .stat-ring .ring-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      word-break: keep-all;
+    }
+
+    /* Timeline chart */
+    .timeline-chart {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline-chart::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-left: 28px;
+      padding-bottom: 20px;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -14px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+
+    .tl-item .tl-time {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      margin-bottom: 2px;
+    }
+
+    .tl-item .tl-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      word-break: keep-all;
+    }
+
+    .tl-item .tl-desc strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    /* ── Tags ── */
+    .curriculum-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 5px 14px;
+      font-weight: 700;
+    }
+
+    .m1 .tag {
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      color: var(--accent-cyan);
+    }
+
+    .m2 .tag {
+      background: rgba(57, 255, 20, 0.08);
+      border: 1px solid rgba(57, 255, 20, 0.2);
+      color: var(--accent-green);
+    }
+
+    .m3 .tag {
+      background: rgba(255, 107, 43, 0.08);
+      border: 1px solid rgba(255, 107, 43, 0.2);
+      color: var(--accent-orange);
+    }
+
+    .m4 .tag {
+      background: rgba(255, 45, 120, 0.08);
+      border: 1px solid rgba(255, 45, 120, 0.2);
+      color: var(--accent-pink);
+    }
+
+
+
+    .m5 .tag {
+      background: rgba(168, 85, 247, 0.08);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      color: var(--accent-purple);
+    }
+
+    /* ── Rocky Section ── */
+    .rocky-section {
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .rocky-bubble {
+      display: inline-block;
+      max-width: 480px;
+      background: rgba(57, 255, 20, 0.06);
+      border: 1px solid rgba(57, 255, 20, 0.15);
+      padding: 28px 32px;
+    }
+
+    .rocky-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent-green);
+      margin-bottom: 12px;
+    }
+
+    .rocky-bubble p {
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .rocky-bubble .note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .reveal-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(57, 255, 20, 0.05) 100%);
+      border: 1px dashed rgba(0, 229, 255, 0.3);
+      padding: 48px 36px;
+    }
+
+    .reveal-emoji {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .reveal-box h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .reveal-box h2 .april {
+      color: var(--accent-green);
+    }
+
+    .reveal-box p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+
+    .reveal-box .real-talk {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-top: 24px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 20px 24px 120px;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent-cyan);
+      color: var(--bg-deep);
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 18px 48px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.25s;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent-green);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(57, 255, 20, 0.3);
+    }
+
+    .cta-sub {
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #1a1a30;
+    }
+
+    .footer p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      line-height: 2;
+    }
+
+    .footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    /* ── Scroll Reveal Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) and (min-width: 601px) {
+      .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 72px;
+        padding-bottom: 48px;
+      }
+
+      .mission-card {
+        padding: 28px 20px;
+      }
+
+      .what-if,
+      .chart-block,
+      .ai-boost {
+        padding: 20px 16px;
+      }
+
+      .ai-prompt-example {
+        padding: 12px 14px;
+      }
+
+      .h-bar-row {
+        grid-template-columns: 80px 1fr 40px;
+        gap: 8px;
+      }
+
+      .h-bar-label {
+        font-size: 0.72rem;
+      }
+
+      .stat-rings {
+        gap: 20px;
+      }
+
+      .reveal-box {
+        padding: 36px 24px;
+      }
+
+      .cta-btn {
+        padding: 16px 36px;
+        font-size: 1rem;
+      }
+
+      .compare-bar-wrap {
+        grid-template-columns: 48px 1fr 36px;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .course-card {
+        padding: 12px 14px;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Deep Space Background -->
+  <div class="space-bg" aria-hidden="true"></div>
+
+  <!-- Nebula Clouds -->
+  <div class="nebula" aria-hidden="true"></div>
+
+  <!-- Tau Ceti Star -->
+  <div class="tau-ceti" aria-hidden="true"></div>
+
+  <!-- Starfield (3 layers) -->
+  <div class="starfield" aria-hidden="true">
+    <div class="layer layer-1"></div>
+    <div class="layer layer-2"></div>
+    <div class="layer layer-3"></div>
+  </div>
+
+  <div class="content-wrapper">
+
+    <!-- Classified Banner -->
+    <div class="classified-bar">
+      <span>CLASSIFIED — 기밀 문서 — CLASSIFIED</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">APRIL 1, 2026 — Project Manwoojeol</div>
+      <h1>
+        헤일메리호에<br><span class="text-green">인프런</span>이 있었다면?
+      </h1>
+      <p class="hero-sub">RYLAND GRACE'S SECRET CURRICULUM</p>
+      <p class="hero-quote">
+        만약 그레이스 박사에게 <em>인프런</em>이 있었다면,<br>
+        인류는 조금 더 빨리 구해졌을지도 몰라요.
+      </p>
+
+      <!-- 🖼 이미지 1: 히어로 메인 이미지 -->
+      <div class="img-slot hero-img">
+        <img src="6.png" alt="프로젝트 인프런메리 메인 이미지">
+      </div>
+
+    </section>
+
+    <!-- Intro -->
+    <section class="intro fade-in">
+      <p>
+        타우 세티까지 11.9광년.<br>
+        갑자기 우주 한복판에서 깨어난 한 명의 과학 교사.<br>
+        상황 파악도 안 되는데, 미션은 이미 시작됐어요.
+      </p>
+      <p class="highlight-line">
+        그에게 천재적 두뇌와 센스가 있지만,<br>
+        빠르고 정확하게 배울 수 있는 인프런의 지식들이 있었다면 어땠을까요!?
+      </p>
+      <p>
+        만약 그레이스 박사에게 인프런이 있었다면<br>
+        이렇게 도움이 됐을거 같아요.(확신)
+      </p>
+    </section>
+
+    <div class="divider"><span>· · · MISSION BRIEFING · · ·</span></div>
+
+    <!-- Missions -->
+    <section class="missions">
+      <div class="missions-header fade-in">
+        <h2>MISSION BRIEFING</h2>
+        <p>HAIL MARY CREW — TRAINING CURRICULUM</p>
+      </div>
+
+      <!-- ═══ MISSION 01 ═══ -->
+      <article class="mission-card m1 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 01</div>
+        <h3>솔로 미션 매니지먼트</h3>
+        <p class="scenario">
+          어쩌다 보니 혼자예요. PM도 없고 스프린트 회의도 없습니다.
+          요구사항 정의부터 실행, 테스트, 배포까지 전부 혼자.
+          우주판 1인 개발이에요.
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            그레이스가 미션 중 내린 의사결정: <span class="stat-inline">약 2,340건</span>.
+            이 중 "일단 해보고 생각하자"로 처리한 건: <span class="stat-inline">1,876건(80.2%)</span>.
+            결과적으로 되돌리거나 재작업한 건: <span class="stat-inline">412건</span>.
+            재작업에 쓴 총 시간: <span class="stat-inline">약 89일</span>. 전체 미션의 <strong>19.4%</strong>예요.
+          </p>
+          <p>
+            프로젝트 관리 기초를 알았다면?
+            태스크를 분해하고, 의존성을 파악하고, 크리티컬 패스를 먼저 치는 판단이 가능했을 겁니다.
+            스탠포드 우주공학과 시뮬레이션에 따르면, 구조화된 의사결정 프레임워크를 적용 시
+            1인 미션의 재작업률은 <span class="stat-inline">80.2% → 12.7%</span>로 감소해요.
+            절약되는 시간: <strong>약 72일</strong>.
+          </p>
+          <p>
+            72일이면 그레이스가 록키에게 에리디언 요리법을 가르칠 수 있었을 겁니다.
+            (록키는 대략 섭씨 200도에서 요리하므로, 레시피 변환이 상당히 복잡해요.)
+          </p>
+          <span class="fake-cite">
+            Y. Kim, "Solo Mission Management Under Cognitive Load and Amnesia: Lessons from a Guy Who Forgot Why He Was
+            in Space,"
+            <em>Harvard Business Review — Interstellar Edition</em>, Q2 2026. (HBR 최초 우주발 기고. 수신까지 11.9년 소요 예정)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            1인 미션의 가장 큰 적은 인지 과부하예요.
+            <strong>AI 코파일럿</strong>이 있었다면, 그레이스가 "일단 해보고 생각하자"로 처리한 1,876건 중
+            <strong>AI가 먼저 리스크를 스코어링</strong>합니다.
+            "이 작업은 되돌리기 비용이 높아요. 먼저 검토할까요?" — 이 한마디로 재작업 412건의
+            <span class="stat-inline">73%</span>를 사전에 방지할 수 있어요.
+          </p>
+          <p>
+            더 나아가 <strong>자율 의사결정 에이전트</strong>가 있었다면?
+            "산소 농도 떨어지고 있는데, 지금 배양 실험 돌려도 될까?" 같은 복합 판단을
+            다차원 데이터로 분석해서 추천해 줍니다.
+            1인이라서 동료에게 물어볼 수 없던 것을, <strong>AI가 가장 합리적인 동료</strong> 역할을 해요.
+            재작업률 <span class="stat-inline">80.2% → 4.1%</span>, 절약 시간 <strong>약 83일</strong>.
+            그 83일이면 록키에게 인간의 유머를 가르칠 수 있었을 겁니다. (아마 실패하겠지만요.)
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "현재 미션 상태와 리소스 잔량을 기반으로, 오늘의 태스크 우선순위를 재정렬해줘.
+            각 태스크의 되돌리기 비용과 크리티컬 패스 영향도를 계산하고,
+            내가 놓치고 있는 의존성 충돌이 있으면 경고해줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">그레이스 박사의 미션 효율 분석</div>
+          <div class="h-bars">
+            <div class="h-bar-row">
+              <span class="h-bar-label">의사결정 속도</span>
+              <div class="h-bar-track">
+                <div class="h-bar-fill" style="width: 35%; background: rgba(168,85,247,0.2);"></div>
+                <div class="h-bar-fill"
+                  style="width: 82%; background: var(--accent-purple); opacity: 0.9; animation-delay: 0.3s;"></div>
+              </div>
+              <span class="h-bar-value" style="color: var(--accent-purple);">+134%</span>
+            </div>
+            <div class="h-bar-row">
+              <span class="h-bar-label">작업 전환 효율</span>
+              <div class="h-bar-track">
+                <div class="h-bar-fill" style="width: 28%; background: rgba(168,85,247,0.2);"></div>
+                <div class="h-bar-fill"
+                  style="width: 75%; background: var(--accent-purple); opacity: 0.9; animation-delay: 0.5s;"></div>
+              </div>
+              <span class="h-bar-value" style="color: var(--accent-purple);">+168%</span>
+            </div>
+            <div class="h-bar-row">
+              <span class="h-bar-label">위기 대응력</span>
+              <div class="h-bar-track">
+                <div class="h-bar-fill" style="width: 45%; background: rgba(168,85,247,0.2);"></div>
+                <div class="h-bar-fill"
+                  style="width: 88%; background: var(--accent-purple); opacity: 0.9; animation-delay: 0.7s;"></div>
+              </div>
+              <span class="h-bar-value" style="color: var(--accent-purple);">+96%</span>
+            </div>
+            <div class="h-bar-row">
+              <span class="h-bar-label">멘탈 관리</span>
+              <div class="h-bar-track">
+                <div class="h-bar-fill" style="width: 20%; background: rgba(168,85,247,0.2);"></div>
+                <div class="h-bar-fill"
+                  style="width: 65%; background: var(--accent-purple); opacity: 0.9; animation-delay: 0.9s;"></div>
+              </div>
+              <span class="h-bar-value" style="color: var(--accent-purple);">+225%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">1인 개발 가이드</span>
+          <span class="tag">AI 코파일럿 활용</span>
+          <span class="tag">AI 에이전트 자동화</span>
+          <span class="tag">프로젝트 관리</span>
+          <span class="tag">문제 해결 사고법</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/claude-code-with-sil?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">실리콘밸리 엔지니어와 함께하는 Claude Code</span>
+              <span class="cc-meta">⭐4.5 · 최근 1,234명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/유행-말고-내공-30년차-개발자의-실?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">유행 말고 내공. 30년차 개발자의 실전 바이브 코딩</span>
+              <span class="cc-meta">⭐5.0 · 최근 451명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/ai-자동화-n8n?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">[베스트셀러] 코딩 없이 AI 자동화 전문가, n8n 완벽 가이드</span>
+              <span class="cc-meta">⭐4.8 · 최근 449명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/회사에서-바로쓰는-업무자동화-ai에이전트?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">회사에서 바로 쓰는 업무자동화 AI 에이전트 (w. n8n)</span>
+              <span class="cc-meta">⭐4.8 · 최근 431명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/2시간-만에-ai로-애드센스-수익형?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">2시간 만에 AI로 애드센스 수익형 웹사이트 만들기</span>
+              <span class="cc-meta">⭐4.9 · 최근 290명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ MISSION 02 ═══ -->
+      <article class="mission-card m2 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 02</div>
+        <h3>에리디언 커뮤니케이션 프로토콜</h3>
+        <p class="scenario">
+          록키는 음파로 소통해요.
+          새로운 언어 체계를 설계하고, 실시간 번역 로직을 만들고,
+          서로 다른 시스템 간 통신 규약을 정의해야 합니다.
+          사실상 API 설계예요.
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            그레이스는 록키와 단어 하나하나를 가리키며 언어를 만들었어요.
+            5주간 습득한 총 어휘: <span class="stat-inline">약 164개</span>.
+            이 중 오해로 인한 커뮤니케이션 실패: <span class="stat-inline">23회</span>.
+            "뜨거운"과 "화난"을 혼동해서 록키가 삐진 횟수: <span class="stat-inline">4회</span>.
+          </p>
+          <p>
+            REST API 설계 원칙을 알았다면?
+            음파 주파수 대역을 엔드포인트처럼 분류하고, 에러 코드 체계(록키식 404: "나, 이해 안 됨 안 됨 안 됨")를 정의해서
+            어휘 확장 속도가 <strong>주당 78단어</strong>까지 올라갔을 겁니다.
+            MIT 언어학과의 이종 지적생명체 커뮤니케이션 시뮬레이션에 따르면,
+            프로토콜 기반 접근은 애드혹 접근 대비 오해율을 <span class="stat-inline">91.2%</span> 감소시켜요.
+          </p>
+          <p>
+            "나, 이해 이해 이해!" — 록키가 이 말을 <strong>3주 일찍</strong> 했을 겁니다.
+          </p>
+          <span class="fake-cite">
+            E. Stratt et al., "RESTful Protocols for Xenolinguistic First Contact Scenarios,"
+            <em>Proceedings of the Interstellar Communication Standards Committee</em>, pp. 404–418, 2026. (피어리뷰어가
+            에리디언이라 리뷰에 6광년 소요)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            록키의 음파 패턴은 사실 <strong>음성 인식 AI</strong>의 완벽한 학습 데이터예요.
+            에리디언어는 26개 기본 음표의 조합 — 이건 본질적으로 토큰화 가능한 구조화된 언어입니다.
+            <strong>LLM 파인튜닝</strong>으로 음파 → 텍스트 매핑을 학습시키면,
+            50개 예문만으로도 새 문장을 <span class="stat-inline">82%</span> 정확도로 번역할 수 있어요.
+          </p>
+          <p>
+            더 놀라운 건 <strong>문맥 기반 추론</strong>이에요.
+            "뜨거운"과 "화난"을 혼동하는 문제?
+            대화 맥락을 분석하는 AI가 있으면 <strong>0회</strong> 발생합니다.
+            록키가 엔진 온도 이야기를 하다가 갑자기 감정을 표현할 확률은 낮으니까요.
+            AI는 그 맥락을 놓치지 않아요.
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "이 음파 시퀀스를 분석해서 에리디언어로 해석하고,
+            직전 5개 대화 맥락을 고려해서 가장 적절한 번역을 제안해줘.
+            모호한 단어가 있으면 후보를 확률순으로 보여줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">에리디언-인간 어휘 습득 속도 (누적 단어 수)</div>
+          <div style="padding: 8px 0;">
+            <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <!-- Grid lines -->
+              <line x1="60" y1="20" x2="60" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+              <line x1="60" y1="170" x2="580" y2="170" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+              <line x1="60" y1="120" x2="580" y2="120" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <line x1="60" y1="70" x2="580" y2="70" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <line x1="60" y1="20" x2="580" y2="20" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <!-- Y axis labels -->
+              <text x="50" y="174" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="end">0</text>
+              <text x="50" y="124" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="end">100</text>
+              <text x="50" y="74" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="end">200</text>
+              <text x="50" y="24" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="end">300</text>
+              <!-- X axis labels -->
+              <text x="60" y="188" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="middle">1주</text>
+              <text x="190" y="188" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="middle">2주</text>
+              <text x="320" y="188" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="middle">3주</text>
+              <text x="450" y="188" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="middle">4주</text>
+              <text x="580" y="188" fill="#555570" font-family="Space Mono, monospace" font-size="9"
+                text-anchor="middle">5주</text>
+              <!-- Movie line (slow linear growth) -->
+              <polyline points="60,165 190,145 320,125 450,105 580,90" fill="none" stroke="rgba(255,255,255,0.2)"
+                stroke-width="2" stroke-dasharray="6,4" />
+              <!-- Inflearn line (exponential growth) -->
+              <polyline points="60,160 190,135 320,95 450,50 580,22" fill="none" stroke="#39ff14" stroke-width="2.5" />
+              <circle cx="580" cy="22" r="4" fill="#39ff14" />
+              <circle cx="580" cy="90" r="3" fill="rgba(255,255,255,0.3)" />
+              <!-- Legend -->
+              <line x1="380" y1="9" x2="400" y2="9" stroke="rgba(255,255,255,0.2)" stroke-width="2"
+                stroke-dasharray="6,4" />
+              <text x="405" y="12" fill="#555570" font-family="Noto Sans KR, sans-serif" font-size="9">영화 속</text>
+              <line x1="460" y1="9" x2="480" y2="9" stroke="#39ff14" stroke-width="2.5" />
+              <text x="485" y="12" fill="#39ff14" font-family="Noto Sans KR, sans-serif" font-size="9">+인프런</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">REST API 설계</span>
+          <span class="tag">LLM 파인튜닝</span>
+          <span class="tag">음성 인식 AI</span>
+          <span class="tag">자연어 처리(NLP)</span>
+          <span class="tag">프로그래밍 언어론</span>
+          <span class="tag">네트워크 기초</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/rag-llm-application개발-langchain?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">RAG를 활용한 LLM Application 개발 (feat. LangChain)</span>
+              <span class="cc-meta">⭐4.9 · 최근 559명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/랭그래프-활용한-llm에이전트-개발?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">LangGraph를 활용한 AI Agent 개발 (feat. MCP)</span>
+              <span class="cc-meta">⭐4.9 · 최근 440명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/한시간-끝내는-랭체인-기본?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">한시간으로 끝내는 LangChain 기본기</span>
+              <span class="cc-meta">⭐4.9 · 최근 398명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/입문자를위한-랭체인-기초?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">입문자를 위한 LangChain 기초</span>
+              <span class="cc-meta">⭐4.8 · 최근 209명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/랭체인으로-만드는-rag-활용-평가?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">RAG 마스터: 기초부터 고급기법까지</span>
+              <span class="cc-meta">⭐4.9 · 최근 134명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ MISSION 03 ═══ -->
+      <article class="mission-card m3 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 03</div>
+        <h3>아스트로파지 데이터 분석</h3>
+        <p class="scenario">
+          태양 에너지를 빨아먹는 미지의 외계 미생물, 아스트로파지.
+          현미경 데이터, 스펙트럼 분석, 증식 패턴 추적 —
+          이 모든 걸 혼자서 분석해야 해요. 엑셀만으로는 안되요.
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            그레이스 박사는 아스트로파지의 증식 주기를 <strong>수작업 현미경 관찰</strong>로 알아냈어요.
+            슬라이드 하나하나를 눈으로 보고, 종이에 기록하고, 계산기를 두드렸죠.
+            총 관찰 횟수 <span class="stat-inline">1,442회</span>, 소요 시간 <span class="stat-inline">약 312시간</span>.
+          </p>
+          <p>
+            Python pandas와 matplotlib을 알았다면?
+            스펙트럼 데이터를 자동 전처리하고 증식 곡선의 피크 패턴을 <strong>17시간 만에</strong> 검출할 수 있었습니다.
+            NASA 존슨 우주센터의 자체 벤치마크에 따르면,
+            비정형 미생물 데이터 분석에서 수작업 대비 Python 자동화는 평균 <span class="stat-inline">18.4배</span> 빠릅니다.
+          </p>
+          <p>
+            295시간이면 뉴질랜드 인구 전체의 하루 식수량과 맞먹는 태양 에너지가 사라져요.
+            우주에서의 삽질은, 지구에서의 삽질과 무게가 다릅니다.
+          </p>
+          <span class="fake-cite">
+            R. Grace, "Manual Observation of Astrophage Breeding Cycles Under Extreme Isolation,"
+            <em>Journal of Reluctant Astronauts</em>, vol. 1, no. 1, pp. 1–1, 2026. (저자 본인이 유일한 독자)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            현미경 슬라이드 1,442장? <strong>컴퓨터 비전 모델</strong>이면 30분이면 끝납니다.
+            사전 학습된 세포 분류 모델을 파인튜닝하면, 아스트로파지의 증식 단계를 이미지만으로 자동 분류할 수 있어요.
+            정확도 <span class="stat-inline">97.3%</span>, 사람 눈보다 빠르고 일관성 있습니다.
+          </p>
+          <p>
+            거기에 <strong>이상 탐지(Anomaly Detection) AI</strong>를 얹으면?
+            스펙트럼 데이터에서 인간이 놓치기 쉬운 미세 패턴 변화를 실시간으로 잡아냅니다.
+            그레이스가 "어? 이상한데?" 하고 직감으로 발견한 것들을, AI는 <strong>수치로 증명</strong>하면서 발견해요.
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "이 현미경 이미지에서 아스트로파지의 현재 증식 단계를 분류하고,
+            지난 48시간 스펙트럼 데이터에서 에너지 흡수율 이상치를 검출해줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">아스트로파지 분석 소요 시간 비교</div>
+          <div class="compare-chart">
+            <div class="compare-row">
+              <div class="compare-label">증식 패턴 발견</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 85%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">3주</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 20%; background: var(--accent-cyan);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-cyan);">3일</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">에너지 흡수율 정량화</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 70%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">2주</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 15%; background: var(--accent-cyan);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-cyan);">2일</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">종간 비교 데이터 시각화</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 60%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">10일</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 8%; background: var(--accent-cyan);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-cyan);">1일</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">AI 를 이용한 데이터 분석</span>
+          <span class="tag">Python 데이터 분석</span>
+          <span class="tag">컴퓨터 비전 입문</span>
+          <span class="tag">이상 탐지 AI</span>
+          <span class="tag">데이터 시각화</span>
+          <span class="tag">통계학 입문</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/빅데이터-분석기사-실기?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">[퇴근후딴짓] 빅데이터 분석기사 실기</span>
+              <span class="cc-meta">⭐4.9 · 최근 141명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/김판다-기초파이썬-gpt?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">데이터 분석 입문자를 위한 기초 파이썬 with ChatGPT</span>
+              <span class="cc-meta">⭐4.9 · 최근 103명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/파이썬-데이터분석-전처리-판다스-시각화?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">[리뉴얼] 처음하는 파이썬 데이터 분석 (전처리·pandas·시각화)</span>
+              <span class="cc-meta">⭐4.9 · 최근 101명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/python-crawling-basic?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">파이썬입문과 크롤링기초 부트캠프</span>
+              <span class="cc-meta">⭐4.9 · 최근 93명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/나도코딩-데이터분석-시각화?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">[무료] 파이썬 데이터 분석 및 시각화 (나도코딩)</span>
+              <span class="cc-meta">⭐5.0 · 최근 87명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ MISSION 04 ═══ -->
+      <article class="mission-card m4 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 04</div>
+        <h3>헤일메리호 시스템 디버깅</h3>
+        <p class="scenario">
+          우주선의 생명유지장치, 항법 시스템, 통신 모듈 —
+          뭔가 고장 나면 스택오버플로우도 검색할 수 없어요.
+          모든 시스템을 혼자서 이해하고, 고치고, 개선해야 합니다.
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            헤일메리호의 미션 기간 중 발생한 시스템 장애: <span class="stat-inline">총 17건</span>.
+            그레이스의 평균 대응 시간: <span class="stat-inline">8.3시간</span>.
+            이 중 "일단 껐다 켜보기"로 해결한 건: <span class="stat-inline">6건(35.3%)</span>.
+            꽤 높은 수치예요. 우주에서도 재부팅은 유효합니다.
+          </p>
+          <p>
+            리눅스 시스템 관리를 알았다면? <code>journalctl</code> 한 줄이면 원인을 특정하고,
+            <code>crontab</code>으로 헬스체크를 자동화해서 장애의 <strong>73%를 사전 감지</strong>했을 겁니다.
+            평균 대응 시간은 <span class="stat-inline">0.8시간</span>으로 단축.
+            특히 DAY 45 통신 모듈 장애는 단순 커넥터 접촉 불량이었는데,
+            그레이스는 이걸 찾느라 <strong>이틀을 날렸어요</strong>. 모니터링 로그가 있었으면 5분이면 끝날 일이었죠.
+          </p>
+          <p>
+            참고로, 헤일메리호 OS는 커스텀 리눅스 기반(커널 5.18.x)으로 추정돼요.
+            스트래트가 조달한 것치곤 꽤 최신 버전입니다.
+          </p>
+          <span class="fake-cite">
+            K. Park, "Uptime Analysis of Interstellar Vessels: Why You Should Have Learned Linux,"
+            <em>International Journal of Things That Break in Space</em>, vol. 7, no. 3, pp. 88–101, 2026. (스택오버플로우 검색
+            불가 환경에서의 생존 보고서)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            "일단 껐다 켜보기" 6건 중 <strong>5건은 AI가 근본 원인을 짚어줬을</strong> 겁니다.
+            <strong>AIOps(AI for IT Operations)</strong>는 수천 줄의 시스템 로그를 수 초 만에 분석하고,
+            장애 패턴을 이전 사례와 매칭해서 해결책까지 제안해요.
+            스택오버플로우가 없어도, AI가 대신 답변해 줍니다.
+          </p>
+          <p>
+            특히 <strong>예측 유지보수(Predictive Maintenance) AI</strong>가 있었다면?
+            DAY 45 통신 모듈 장애는 실제 발생 <span class="stat-inline">12일 전</span>부터 커넥터 저항값의 미세 증가 패턴이 있었을 거예요.
+            AI는 이런 <strong>0.3% 수준의 미세 변동</strong>도 잡아냅니다.
+            그레이스가 이틀 날린 건 단순히 리눅스를 몰라서가 아니라,
+            "고장 나기 전에 경고하는 시스템"이 없었기 때문이에요.
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "지난 72시간 시스템 로그를 분석해서 비정상 패턴을 찾아줘.
+            각 센서의 추세선을 기반으로 향후 7일 내 장애 가능성이 있는 모듈을 예측하고,
+            선제적 조치 방안을 제안해줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">미션 중 시스템 장애 타임라인</div>
+          <div class="timeline-chart">
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color: var(--accent-orange); background: rgba(255,107,43,0.3);"></div>
+              <div class="tl-time" style="color: var(--accent-orange);">DAY 3</div>
+              <div class="tl-desc">
+                생명유지장치 산소 농도 이상 — 영화 속: <strong>6시간 수동 점검</strong><br>
+                +인프런: 모니터링 대시보드로 <strong>20분 만에 원인 특정</strong>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color: var(--accent-orange); background: rgba(255,107,43,0.3);"></div>
+              <div class="tl-time" style="color: var(--accent-orange);">DAY 18</div>
+              <div class="tl-desc">
+                항법 컴퓨터 연산 오류 — 영화 속: <strong>3일간 시행착오</strong><br>
+                +인프런: 로그 분석으로 <strong>메모리 릭 2시간 만에 패치</strong>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color: var(--accent-orange); background: rgba(255,107,43,0.3);"></div>
+              <div class="tl-time" style="color: var(--accent-orange);">DAY 45</div>
+              <div class="tl-desc">
+                통신 모듈 간헐적 두절 — 영화 속: <strong>원인 미발견, 감으로 대응</strong><br>
+                +인프런: 자동 헬스체크 크론잡이 <strong>장애 전에 경고 알림 발송</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">리눅스 시스템 관리</span>
+          <span class="tag">AIOps 실전</span>
+          <span class="tag">예측 유지보수 AI</span>
+          <span class="tag">DevOps 입문</span>
+          <span class="tag">임베디드 프로그래밍</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/설-특집-초당-500000건-트래픽을?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">초당 500,000+건 트래픽을 처리하는 카카오 면접관의 Redis</span>
+              <span class="cc-meta">⭐4.9 · 최근 597명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/aws-saa-c03-자격증-벼락치기?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">AWS SAA-C03 자격증 벼락치기 — 163문제로 2주 합격</span>
+              <span class="cc-meta">⭐4.9 · 최근 531명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/네이버-개발자가-알려주는-nats로?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">네이버 면접관이 사용하는 초저지연 분산 시스템 NATS</span>
+              <span class="cc-meta">⭐5.0 · 최근 264명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/비전공자-docker-입문-실전?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">비전공자도 이해할 수 있는 Docker 입문/실전</span>
+              <span class="cc-meta">⭐4.9 · 최근 222명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/쿠버네티스-어나더-클래스-지상편-sprint1?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">쿠버네티스 어나더 클래스 (실무기초·Jenkins·ArgoCD)</span>
+              <span class="cc-meta">⭐4.9 · 최근 198명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ MISSION 05 ═══ -->
+      <article class="mission-card m5 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 05</div>
+        <h3>지구에 보내는 마지막 보고서</h3>
+        <p class="scenario">
+          아스트로파지의 비밀을 풀었습니다. 록키와의 우정도 증명했어요.
+          하지만 이 모든 발견을 11.9광년 떨어진 지구에 <strong>제대로 전달</strong>하지 못하면
+          아무 의미가 없습니다.
+          UN 총회에서 상영될 영상, 전 세계 과학자를 위한 보고서,
+          인류가 이해할 수 있는 시각 자료 — 전부 혼자 만들어야 해요.
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            그레이스가 지구로 전송한 데이터: <span class="stat-inline">원시 텍스트 로그 47GB</span>.
+            포맷: 줄바꿈도 없는 플레인 텍스트. 수신 측 과학자들의 반응: "이걸 어떻게 읽으라고?"
+            결국 NASA가 <strong>별도 팀 12명</strong>을 투입해서 3개월간 데이터를 시각화하고 보고서를 작성했어요.
+          </p>
+          <p>
+            Premiere Pro와 After Effects를 알았다면?
+            아스트로파지 현미경 영상에 모션 그래픽을 입히고, 록키와의 첫 만남을 <strong>3분짜리 다큐멘터리</strong>로 편집해서
+            지구에 보낼 수 있었을 겁니다.
+            Photoshop과 Illustrator로 아스트로파지 구조도를 만들면, 논문 한 편 읽는 것보다 <strong>100배 직관적</strong>이에요.
+          </p>
+          <p>
+            엑셀로 실험 데이터를 정리하고, 노션으로 미션 로그를 체계화했다면?
+            NASA 시각화 팀 12명이 할 일을 <strong>그레이스 혼자서, 우주에서</strong> 끝냈을 겁니다.
+            이 보고서가 지구에 도착하는 데 11.9년 — 잘 만들어 보내야 할 이유가 충분하죠.
+          </p>
+          <span class="fake-cite">
+            NASA Public Affairs Office, "On the Importance of Visual Communication in
+            Interstellar Data Transmission: Why 47GB of Plain Text Made Everyone Cry,"
+            <em>Journal of Please Use PowerPoint Next Time</em>, vol. 1, pp. 1–47000000000, 2026.
+            (수신까지 11.9년 소요. 파워포인트 교육은 그보다 빨리 가능)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            사실 2026년의 AI는 콘텐츠 제작의 판을 완전히 바꿔놓았어요.
+            <strong>AI 영상 편집 도구</strong>를 쓰면 47GB 원시 영상에서 하이라이트를 자동 추출하고,
+            자막과 모션 그래픽까지 한 번에 생성합니다.
+            록키와 대화하는 장면? AI가 <strong>감정 분석</strong>까지 해서 가장 감동적인 순간을 골라줘요.
+          </p>
+          <p>
+            <strong>AI 디자인 어시스턴트</strong>와 함께라면 "아스트로파지 구조를 인포그래픽으로 만들어줘"
+            한마디로 초안이 완성됩니다. 거기에 사람의 감각을 더해 다듬으면 끝.
+            Notion AI로 47GB 로그를 <strong>자동 요약·분류</strong>하고,
+            엑셀 AI로 복잡한 실험 데이터에서 <strong>인사이트를 자동 추출</strong>할 수도 있어요.
+            NASA 팀 12명 × 3개월의 일을, AI와 함께라면 <span class="stat-inline">1명 × 2주</span>로 줄일 수 있습니다.
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "이 실험 영상 클립들에서 아스트로파지가 에너지를 흡수하는 순간을 자동으로 찾아서
+            하이라이트 릴을 만들어줘. 각 장면에 설명 자막과 데이터 오버레이를 추가하고,
+            UN 총회 발표용 3분 버전으로 편집해줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">보고서 제작 소요 시간 비교</div>
+          <div class="compare-chart">
+            <div class="compare-row">
+              <div class="compare-label">영상 다큐멘터리 제작</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 90%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">못함</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 25%; background: var(--accent-purple);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-purple);">3일</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">데이터 시각화 보고서</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 75%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">텍스트만</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 18%; background: var(--accent-purple);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-purple);">2일</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">미션 전체 로그 정리</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 65%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">미정리</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 12%; background: var(--accent-purple);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-purple);">1일</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">영상 편집</span>
+          <span class="tag">모션 그래픽</span>
+          <span class="tag">포토샵</span>
+          <span class="tag">일러스트레이터</span>
+          <span class="tag">엑셀 실무</span>
+          <span class="tag">노션 활용</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/생산성-높이는-notebooklm?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">생산성을 높이는 NotebookLM 활용 가이드</span>
+              <span class="cc-meta">⭐4.4 · 최근 229명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/figma-mcp-ai로-4시간만에?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">Figma MCP × AI로 4시간만에 완성하는 반응형 웹포트폴리오</span>
+              <span class="cc-meta">⭐4.9 · 최근 107명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/2024-피그마-기초?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">피그마UI3 기초 + 실무 탄탄 초스피드 완강코스</span>
+              <span class="cc-meta">⭐4.7 · 최근 110명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/practical-capcut-cou?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">마케터를 위한 캡컷 실전 강의: 숏폼 광고 기획·제작</span>
+              <span class="cc-meta">⭐4.0 · 최근 84명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/ai-리터러시-저자직강-모든-직장인이?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">[AI 리터러시] 모든 직장인이 활용할 수 있는 올인원 AI 활용법</span>
+              <span class="cc-meta">⭐4.8 · 최근 65명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/엑셀기초-실무핵심-3시간?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">엑셀기초 실무핵심만 뽑아 3시간에 끝내기</span>
+              <span class="cc-meta">⭐4.9 · 최근 61명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ MISSION 06 ═══ -->
+      <article class="mission-card m6 fade-in">
+        <div class="accent-bar"></div>
+        <div class="mission-number">MISSION 06</div>
+        <h3>지구 귀환 후 재취업 프로젝트</h3>
+        <p class="scenario">
+          미션 완료. 인류를 구했습니다. 하지만 지구에 돌아오니 현실이 기다리고 있어요.
+          이력서의 최근 경력란에는 <strong>"우주 출장 (비밀)"</strong>이라고만 적혀 있고,
+          면접관은 "공백기에 뭐 하셨어요?"라고 묻습니다.
+          "태양을 구했습니다"는 이력서에 어떻게 쓰죠?
+        </p>
+
+        <div class="what-if">
+          <div class="what-if-label">▸ 인프런이 있었다면</div>
+          <p>
+            그레이스의 객관적 스펙: 분자생물학 박사, 중학교 과학 교사 경력 9년,
+            <strong>비공개 우주 미션 수행</strong> (NDA로 상세 기술 불가).
+            이력서 제출 38곳, 서류 통과 <span class="stat-inline">2곳(5.3%)</span>.
+            면접관 반응: "공백기 4년에 기밀이라뇨... 다음 분 들어오세요."
+          </p>
+          <p>
+            사실 그레이스는 <strong>외계 생명체 최초 발견</strong>, <strong>이종 지적생명체와 협업</strong>,
+            <strong>제로그래비티 환경 독립 연구</strong>, <strong>한정 자원 기반 문제 해결</strong> 경험이 있습니다.
+            이걸 채용 담당자가 알아볼 수 있게 쓰는 게 문제죠.
+          </p>
+          <p>
+            개발자 이력서 작성법을 알았다면?
+            "아스트로파지 증식 패턴 분석 → Python 자동화로 18.4배 효율화"처럼
+            <strong>성과 중심 서술</strong>로 바꿀 수 있었을 겁니다.
+            코딩 테스트와 기술 면접 준비까지 했다면?
+            서류 통과율 <span class="stat-inline">5.3% → 47%</span>,
+            최종 합격까지 <strong>평균 2.3개월</strong>이면 충분합니다.
+          </p>
+          <span class="fake-cite">
+            H. R. Department, "How to Evaluate Candidates Who Claim to Have Saved the Sun:
+            A Recruiter's Dilemma,"
+            <em>Journal of Unreasonable Career Gaps</em>, vol. 4, pp. 1–∞, 2026.
+            (이 논문의 저자는 그레이스의 이력서를 받고 퇴사했다)
+          </span>
+        </div>
+
+        <div class="ai-boost">
+          <div class="ai-boost-label">🤖 AI BOOST — 만약 AI까지 쓸 수 있었다면</div>
+          <p>
+            2026년의 취업 시장에서 AI는 선택이 아니라 <strong>생존 무기</strong>예요.
+            <strong>AI 이력서 최적화 도구</strong>로 채용 공고의 키워드를 분석하고,
+            내 경험을 해당 공고에 맞게 자동 리라이팅할 수 있습니다.
+            "외계 미생물 분석" → "비정형 데이터 기반 패턴 인식 및 자동화 파이프라인 구축"으로 변환.
+            ATS(지원자 추적 시스템) 통과율이 <span class="stat-inline">3.2배</span> 올라가요.
+          </p>
+          <p>
+            기술 면접 준비도 AI와 함께라면 다릅니다.
+            <strong>AI 모의 면접</strong>으로 예상 질문을 생성하고 답변을 연습.
+            "분산 시스템에서의 데이터 일관성 문제를 어떻게 해결하셨나요?"
+            — 그레이스: "11.9광년 떨어진 곳에서 실시간 동기화 없이 해결해야 했는데요..."
+            이건 진짜 좋은 답변이에요. AI가 <strong>STAR 기법</strong>으로 다듬어만 주면 됩니다.
+          </p>
+          <div class="ai-prompt-example">
+            <span class="prompt-prefix">PROMPT EXAMPLE ></span>
+            "이 채용 공고를 분석해서 핵심 요구 역량을 추출하고,
+            내 경험 중 매칭되는 항목을 성과 중심으로 재작성해줘.
+            STAR 기법으로 면접 예상 질문 5개와 모범 답변도 만들어줘."
+          </div>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-title">그레이스 박사의 구직 여정 시뮬레이션</div>
+          <div class="compare-chart">
+            <div class="compare-row">
+              <div class="compare-label">서류 통과율</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 5%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">5.3%</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 47%; background: var(--accent-gold);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-gold);">47%</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">코딩 테스트 통과</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 0%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">못 봄</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 72%; background: var(--accent-gold);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-gold);">72%</span>
+                </div>
+              </div>
+            </div>
+            <div class="compare-row">
+              <div class="compare-label">최종 합격까지</div>
+              <div class="compare-bars">
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag before">영화 속</span>
+                  <div class="compare-track">
+                    <div class="compare-fill before-fill" style="width: 80%;"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--text-dim);">아직...</span>
+                </div>
+                <div class="compare-bar-wrap">
+                  <span class="compare-bar-tag after">+인프런</span>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width: 22%; background: var(--accent-gold);"></div>
+                  </div>
+                  <span class="compare-val" style="color: var(--accent-gold);">2.3개월</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-label">RECOMMENDED CURRICULUM</div>
+        <div class="tags">
+          <span class="tag">이력서 작성법</span>
+          <span class="tag">코딩 테스트</span>
+          <span class="tag">기술 면접</span>
+          <span class="tag">CS 기초</span>
+          <span class="tag">AI 포트폴리오</span>
+        </div>
+
+        <div class="course-grid">
+          <a href="https://www.inflearn.com/course/10000장의-이력서를-본-기술이사의?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">10,000장의 이력서를 본 기술이사의 이력서 가이드</span>
+              <span class="cc-meta">⭐5.0 · 최근 475명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/38군데-합격비법-코테-필수-알고리즘?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">38군데 합격 비법, 코딩테스트 필수 알고리즘</span>
+              <span class="cc-meta">⭐5.0 · 최근 280명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/cs-interview-prepara?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">채널톡 면접관이 직접 알려주는 CS 면접 대비</span>
+              <span class="cc-meta">⭐5.0 · 최근 274명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/3일-완성-백엔드-면접-생존-챌린지?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">3일 만에 끝내는 백엔드 면접 핵심 압축 공략집</span>
+              <span class="cc-meta">⭐5.0 · 최근 235명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/개발자-이력서-작성법-강승현?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">서류합격률 4%를 탈출하는 개발자 이력서 작성법</span>
+              <span class="cc-meta">⭐5.0 · 최근 99명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+          <a href="https://www.inflearn.com/course/개발자-면접-cs-특강?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+            target="_blank" rel="noopener" class="course-card">
+            <span class="cc-icon">📘</span>
+            <span class="cc-info">
+              <span class="cc-title">CS 지식의 정석 — 디자인패턴·네트워크·OS·DB·자료구조</span>
+              <span class="cc-meta">⭐4.8 · 최근 111명</span>
+            </span>
+            <span class="cc-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 🖼 이미지 3: 록키 상단 이미지 -->
+    <div class="img-slot rocky-before fade-in">
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='860' height='400' viewBox='0 0 860 400'%3E%3Crect fill='%230d0d1a' width='860' height='400'/%3E%3Ctext x='430' y='200' text-anchor='middle' fill='%23555570' font-family='monospace' font-size='14'%3E%5B 록키 상단 이미지 슬롯 — 860×400 %5D%3C/text%3E%3C/svg%3E"
+        alt="록키와 그레이스의 우주 장면">
+    </div>
+
+    <!-- Reveal -->
+    <section class="reveal fade-in">
+      <div class="reveal-box">
+        <span class="reveal-emoji">🚀</span>
+        <h2>
+          <span class="april">만우절을</span> 맞아 재미있는 상상을 해보았어요.<br>
+        </h2>
+        <p>
+          하지만 새로운 기술을 배워서 어려운 문제를 해결하는 건
+          단지 영화 속 이야기가 아니에요.
+        </p>
+        <p>
+          매일 수만명이 인프런에서 자신만의 미션을 수행하고 있습니다.
+          언젠가 있을 큰 임무를 해내기 위해서!!
+        </p>
+        <p class="real-talk">
+          당신의 헤일메리 미션은 뭔가요?
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section fade-in">
+      <a href="https://www.inflearn.com?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
+        class="cta-btn">나의 미션 시작하기 →</a>
+      <p class="cta-sub">NO ASTROPHAGE. NO COMA. JUST LEARNING.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        본 페이지는 2026년 만우절 기념 콘텐츠입니다.<br>
+        영화 &lt;프로젝트 헤일메리&gt;의 스토리를 패러디한 창작물이며, 실제 영화 제작진 및 출연진과 무관합니다.<br>
+        * 모든 수치는 허구이며, 재미를 위해 만들어졌습니다.<br>
+        © <a
+          href="https://www.inflearn.com?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">인프런</a>
+        | 우주에서도 배울 수 있다면, 인프런이었을 겁니다.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    });
+  </script>
+
+</body>
+
+</html>
