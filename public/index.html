@@ -51,6 +51,184 @@
       line-height: 1.7;
     }
 
+    /* ── Inflearn Header ── */
+    .inf-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(3, 3, 17, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .inf-header-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inf-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .inf-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .inf-logo span {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #1dc078;
+      letter-spacing: -0.5px;
+    }
+
+    .inf-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .inf-nav a {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .inf-nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    @media (max-width: 600px) {
+      .inf-header {
+        height: 56px;
+        padding: 0 16px;
+      }
+
+      .inf-header-inner {
+        gap: 16px;
+      }
+
+      .inf-nav a {
+        font-size: 0.82rem;
+        padding: 6px 10px;
+      }
+
+      .inf-logo span {
+        font-size: 1rem;
+      }
+    }
+
+    /* ── Inflearn Header ── */
+    .inf-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(3, 3, 17, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .inf-header-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inf-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .inf-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .inf-logo span {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #1dc078;
+      letter-spacing: -0.5px;
+    }
+
+    .inf-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .inf-nav a {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .inf-nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    @media (max-width: 600px) {
+      .inf-header {
+        height: 56px;
+        padding: 0 16px;
+      }
+
+      .inf-header-inner {
+        gap: 16px;
+      }
+
+      .inf-nav a {
+        font-size: 0.82rem;
+        padding: 6px 10px;
+      }
+
+      .inf-logo span {
+        font-size: 1rem;
+      }
+    }
+
     /* ── Deep Space Background ── */
     .space-bg {
       position: fixed;
@@ -347,7 +525,7 @@
 
     /* ── Hero ── */
     .hero {
-      padding-top: 100px;
+      padding-top: 140px;
       padding-bottom: 80px;
       text-align: center;
       position: relative;
@@ -1434,7 +1612,7 @@
 
     @media (max-width: 600px) {
       .hero {
-        padding-top: 72px;
+        padding-top: 100px;
         padding-bottom: 48px;
       }
 
@@ -1492,6 +1670,19 @@
 </head>
 
 <body>
+
+  <!-- Inflearn Header -->
+  <header class="inf-header">
+    <div class="inf-header-inner">
+      <nav class="inf-nav">
+        <a href="https://www.inflearn.com/courses?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">강의</a>
+        <a href="https://www.inflearn.com/challenges?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">챌린지</a>
+        <a href="https://mentoring.inflearn.com/?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">멘토링</a>
+        <a href="https://www.inflearn.com/clips?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">클립</a>
+        <a href="https://www.inflearn.com/roadmaps?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4">로드맵</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Deep Space Background -->
   <div class="space-bg" aria-hidden="true"></div>
