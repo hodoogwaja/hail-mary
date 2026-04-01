@@ -3277,13 +3277,10 @@
       saveMissionToSheet(text);
     }
 
-    // 구글시트 저장
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxLjoLmAJUD-Qo-WEAUXrOSLZeW8SU_xCZdQaZmyQqIxeBZ0l2u7gXXV0GbpHiME-W2/exec'; // ← 배포 후 교체
+    // 구글시트 저장 (Vercel 프록시 경유 — CORS 우회)
     function saveMissionToSheet(mission) {
-      
-      fetch(SHEET_URL, {
+      fetch('/api/save-mission', {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mission: mission,
