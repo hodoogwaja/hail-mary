@@ -2,6 +2,9 @@
   "buildCommand": null,
   "outputDirectory": "public",
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/share", "destination": "/api/share" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
