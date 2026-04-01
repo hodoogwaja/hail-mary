@@ -3278,9 +3278,9 @@
     }
 
     // 구글시트 저장
-    const SHEET_URL = 'GOOGLE_APPS_SCRIPT_URL'; // ← 배포 후 교체
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwNSBX1XWBRy7GK-uaLH57qokN4lPcIeSX8mXq_aVDVI2GH4Da_rf2zMrfiQUETsfZztA/exec'; // ← 배포 후 교체
     function saveMissionToSheet(mission) {
-      if (SHEET_URL === 'GOOGLE_APPS_SCRIPT_URL') return; // 미설정 시 스킵
+      
       fetch(SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
