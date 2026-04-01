@@ -1936,22 +1936,93 @@
       background: rgba(57, 255, 20, 0.06);
     }
 
-    /* Shared mission (from URL param) */
-    .shared-mission-banner {
+    /* Shared mission card (hero 안에 표시) */
+    .shared-hero-card {
       display: none;
-      max-width: 520px;
-      margin: 0 auto 40px;
+      margin-top: 40px;
       text-align: center;
+      animation: shc-appear 0.8s ease-out;
     }
 
-    .shared-mission-banner.active { display: block; }
+    .shared-hero-card.active { display: block; }
 
-    .smb-from {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-bottom: 12px;
-      letter-spacing: 1px;
+    @keyframes shc-appear {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .shc-label {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(255, 107, 43, 0.3);
+    }
+
+    .shc-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, #050520 0%, #0a0a35 30%, #0d0828 60%, #050520 100%);
+      border: 1px solid rgba(255, 180, 60, 0.2);
+      padding: 48px 32px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 40px rgba(255, 150, 30, 0.08),
+        0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 배경 별 + 광선 (미션카드와 동일) */
+    .shc-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(0,229,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 25% 45%, rgba(255,220,150,0.6), transparent),
+        linear-gradient(225deg, rgba(255,180,60,0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .shc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,180,60,0.4), var(--accent-cyan), rgba(57,255,20,0.3), transparent);
+    }
+
+    .shc-cta {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      padding: 10px 28px;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 50px;
+      transition: all 0.25s;
+    }
+
+    .shc-cta:hover {
+      background: rgba(0, 229, 255, 0.08);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .shc-card { padding: 40px 24px 32px; }
+      .shc-label { font-size: 0.9rem; }
     }
 
     @media (max-width: 600px) {
@@ -2152,6 +2223,19 @@
         <img src="6.png" alt="프로젝트 인프런메리 메인 이미지">
       </div>
 
+      <!-- 공유 미션 배너 (URL 파라미터로 진입 시) -->
+      <div class="shared-hero-card" id="sharedBanner">
+        <div class="shc-label">🚀 누군가의 헤일메리 미션이 도착했어요</div>
+        <div class="shc-card">
+          <div class="sun"></div>
+          <div class="mcv-badge">TOP SECRET</div>
+          <div class="mcv-title">MY HAIL MARY PROJECT 2026</div>
+          <div class="mcv-text" id="sharedText"></div>
+          <div class="mcv-footer">inflearn.com · <span class="inf">프로젝트 인프런메리</span></div>
+        </div>
+        <a href="#myMissionSection" class="shc-cta">나도 내 미션 만들기 →</a>
+      </div>
+
     </section>
 
     <!-- Intro -->
@@ -2170,18 +2254,6 @@
         이렇게 도움이 됐을거 같아요.(확신)
       </p>
     </section>
-
-    <!-- 공유 링크로 들어온 경우 표시 -->
-    <div class="shared-mission-banner fade-in" id="sharedBanner">
-      <div class="smb-from">누군가의 헤일메리 미션이 도착했어요 👇</div>
-      <div class="mission-card-visual" id="sharedCardVisual">
-          <div class="sun"></div>
-        <div class="mcv-badge">TOP SECRET</div>
-        <div class="mcv-title">MY HAIL MARY PROJECT 2026</div>
-        <div class="mcv-text" id="sharedText"></div>
-        <div class="mcv-footer">inflearn.com · <span class="inf">프로젝트 인프런메리</span></div>
-      </div>
-    </div>
 
     <div class="divider"><span>· · · MISSION BRIEFING · · ·</span></div>
 
@@ -3129,7 +3201,7 @@
     </section>
 
     <!-- My Hail Mary Mission -->
-    <section class="my-mission fade-in">
+    <section class="my-mission fade-in" id="myMissionSection">
       <div class="my-mission-box">
         <div class="my-mission-label">YOUR MISSION</div>
         <h2>올해, 나만의<br><span class="em-green">헤일메리 프로젝트</span>는?</h2>
@@ -3190,7 +3262,7 @@
 
   <!-- Mission Share Script -->
   <script>
-    // 미션 카드 생성
+    // 미션 카드 생성 + 구글시트 저장
     function generateMissionCard() {
       const input = document.querySelector('.mission-input');
       const text = input.value.trim();
@@ -3200,17 +3272,36 @@
       const result = document.getElementById('missionResult');
       result.classList.add('active');
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // 구글시트에 저장 (비동기, 실패해도 무시)
+      saveMissionToSheet(text);
     }
 
-    // 공유 기능
+    // 구글시트 저장
+    const SHEET_URL = 'GOOGLE_APPS_SCRIPT_URL'; // ← 배포 후 교체
+    function saveMissionToSheet(mission) {
+      if (SHEET_URL === 'GOOGLE_APPS_SCRIPT_URL') return; // 미설정 시 스킵
+      fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mission: mission,
+          timestamp: new Date().toISOString(),
+          referrer: document.referrer || 'direct'
+        })
+      }).catch(() => {});
+    }
+
+    // 공유 기능 — /share 엔드포인트 사용 (동적 OG 태그)
     function shareMission(type) {
       const text = document.getElementById('missionText').textContent;
       const encoded = encodeURIComponent(text);
-      const url = window.location.origin + window.location.pathname + '?mission=' + encoded;
-      const shareText = '🚀 나의 2026 헤일메리 프로젝트: ' + text + '\n\n당신의 헤일메리 미션은?\n' + url;
+      const shareUrl = window.location.origin + '/share?mission=' + encoded;
+      const shareText = '🚀 나의 2026 헤일메리 프로젝트: ' + text + '\n\n당신의 헤일메리 미션은?\n' + shareUrl;
 
       if (type === 'copy') {
-        navigator.clipboard.writeText(url).then(() => {
+        navigator.clipboard.writeText(shareUrl).then(() => {
           const btn = event.target;
           btn.textContent = '✅ 복사됨!';
           btn.classList.add('copied');
@@ -3220,9 +3311,9 @@
         window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(shareText), '_blank');
       } else if (type === 'share') {
         if (navigator.share) {
-          navigator.share({ title: '나의 헤일메리 프로젝트', text: '🚀 ' + text, url: url });
+          navigator.share({ title: '나의 헤일메리 프로젝트', text: '🚀 ' + text, url: shareUrl });
         } else {
-          navigator.clipboard.writeText(url).then(() => {
+          navigator.clipboard.writeText(shareUrl).then(() => {
             const btn = event.target;
             btn.textContent = '✅ 링크 복사됨!';
             btn.classList.add('copied');
@@ -3242,6 +3333,10 @@
         banner.classList.add('active');
         // textarea에도 미리 채워두기
         document.querySelector('.mission-input').value = mission;
+        // 부드럽게 카드로 스크롤
+        setTimeout(() => {
+          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
       }
     })();
   </script>
