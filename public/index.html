@@ -248,6 +248,86 @@
         var(--bg-deep);
     }
 
+    /* ── Page Sun (페이지 태양) ── */
+    .page-sun {
+      position: fixed;
+      bottom: -120px;
+      left: -120px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 55% 45%, #fff8e1 0%, #ffcc02 20%, #ff8800 45%, #ff4400 65%, #cc2200 80%, transparent 100%);
+      box-shadow:
+        0 0 30px 12px rgba(255, 200, 60, 0.5),
+        0 0 80px 30px rgba(255, 150, 30, 0.25),
+        0 0 160px 60px rgba(255, 100, 0, 0.1),
+        0 0 300px 120px rgba(255, 80, 0, 0.04),
+        0 0 500px 200px rgba(255, 60, 0, 0.02);
+      z-index: 0;
+      pointer-events: none;
+      animation: page-sun-pulse 8s ease-in-out infinite;
+    }
+
+    /* 코로나 + 홍염 */
+    .page-sun::before {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 35%, rgba(255, 180, 60, 0.06) 50%, transparent 65%),
+        radial-gradient(circle, transparent 40%, rgba(255, 100, 0, 0.04) 55%, transparent 70%);
+      animation: corona-rotate 30s linear infinite;
+    }
+
+    /* 광선 (렌즈 플레어) */
+    .page-sun::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      transform: translate(-50%, -50%);
+      background:
+        linear-gradient(0deg, transparent 47%, rgba(255, 200, 80, 0.03) 49.5%, rgba(255, 220, 120, 0.06) 50%, rgba(255, 200, 80, 0.03) 50.5%, transparent 53%),
+        linear-gradient(90deg, transparent 47%, rgba(255, 200, 80, 0.03) 49.5%, rgba(255, 220, 120, 0.06) 50%, rgba(255, 200, 80, 0.03) 50.5%, transparent 53%),
+        linear-gradient(45deg, transparent 48%, rgba(255, 200, 80, 0.02) 49.8%, rgba(255, 220, 120, 0.03) 50%, rgba(255, 200, 80, 0.02) 50.2%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(255, 200, 80, 0.02) 49.8%, rgba(255, 220, 120, 0.03) 50%, rgba(255, 200, 80, 0.02) 50.2%, transparent 52%);
+      pointer-events: none;
+    }
+
+    @keyframes page-sun-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: 0.92; }
+    }
+
+    /* 태양 빛이 콘텐츠에 미세하게 비치는 효과 */
+    .content-wrapper::before {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 50vw;
+      height: 40vh;
+      background: radial-gradient(ellipse at bottom left, rgba(255, 150, 50, 0.02) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 600px) {
+      .page-sun {
+        width: 160px;
+        height: 160px;
+        bottom: -100px;
+        left: -100px;
+      }
+      .page-sun::after {
+        width: 350px;
+        height: 350px;
+      }
+    }
+
     /* ── Tau Ceti (타우 세티 항성) ── */
     .tau-ceti {
       position: fixed;
@@ -379,59 +459,83 @@
       height: 200%;
     }
 
-    /* 먼 별 — 작고 많은 */
+    /* 먼 별 — 작고 밀도 높은 */
     .starfield .layer-1 {
       background:
-        radial-gradient(0.8px 0.8px at 3% 12%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(0.8px 0.8px at 8% 67%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(1px 1px at 12% 34%, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(0.8px 0.8px at 18% 89%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 23% 45%, rgba(200, 220, 255, 0.5), transparent),
-        radial-gradient(0.8px 0.8px at 28% 5%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(0.8px 0.8px at 33% 72%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 38% 28%, rgba(255, 240, 200, 0.4), transparent),
-        radial-gradient(0.8px 0.8px at 42% 56%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(0.8px 0.8px at 48% 91%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 53% 15%, rgba(200, 200, 255, 0.6), transparent),
-        radial-gradient(0.8px 0.8px at 58% 43%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(0.8px 0.8px at 63% 78%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 68% 22%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(0.8px 0.8px at 73% 61%, rgba(255, 220, 180, 0.4), transparent),
-        radial-gradient(0.8px 0.8px at 78% 8%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 83% 50%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(0.8px 0.8px at 88% 85%, rgba(200, 220, 255, 0.5), transparent),
-        radial-gradient(0.8px 0.8px at 93% 37%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 97% 70%, rgba(255, 255, 255, 0.5), transparent);
+        radial-gradient(1.6px 1.6px at 3% 12%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 6% 45%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 8% 67%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 12% 34%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.6px 1.6px at 15% 78%, rgba(200,220,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 18% 89%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 21% 8%, rgba(255,240,200,0.5), transparent),
+        radial-gradient(2px 2px at 23% 45%, rgba(200,220,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 27% 62%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 28% 5%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 32% 28%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 33% 72%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 38% 28%, rgba(255,240,200,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 42% 56%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 44% 83%, rgba(200,220,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 48% 91%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 51% 38%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 53% 15%, rgba(200,200,255,0.6), transparent),
+        radial-gradient(1.6px 1.6px at 58% 43%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 63% 78%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 66% 5%, rgba(255,240,200,0.5), transparent),
+        radial-gradient(2px 2px at 68% 22%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 73% 61%, rgba(255,220,180,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 76% 88%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1.6px 1.6px at 78% 8%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 83% 50%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 86% 32%, rgba(200,220,255,0.4), transparent),
+        radial-gradient(1.6px 1.6px at 88% 85%, rgba(200,220,255,0.5), transparent),
+        radial-gradient(1.6px 1.6px at 93% 37%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 97% 70%, rgba(255,255,255,0.5), transparent);
       animation: drift 80s linear infinite;
     }
 
-    /* 중간 별 — 약간 크고 밝은 */
+    /* 중간 별 — 크고 밝은, 색상 다양 */
     .starfield .layer-2 {
       background:
-        radial-gradient(1.5px 1.5px at 5% 25%, rgba(255, 255, 255, 0.8), transparent),
-        radial-gradient(1.2px 1.2px at 15% 55%, rgba(0, 229, 255, 0.5), transparent),
-        radial-gradient(1.5px 1.5px at 25% 80%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(1.2px 1.2px at 35% 15%, rgba(255, 240, 200, 0.6), transparent),
-        radial-gradient(1.5px 1.5px at 45% 65%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1.2px 1.2px at 55% 35%, rgba(200, 200, 255, 0.6), transparent),
-        radial-gradient(1.5px 1.5px at 65% 90%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(1.2px 1.2px at 72% 48%, rgba(57, 255, 20, 0.3), transparent),
-        radial-gradient(1.5px 1.5px at 82% 18%, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(1.2px 1.2px at 92% 72%, rgba(0, 229, 255, 0.4), transparent);
+        radial-gradient(3.6px 3.6px at 3% 18%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(3px 3px at 5% 52%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(4px 4px at 9% 85%, rgba(0,229,255,0.5), transparent),
+        radial-gradient(3px 3px at 14% 35%, rgba(255,240,200,0.7), transparent),
+        radial-gradient(3.6px 3.6px at 19% 68%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(3px 3px at 25% 12%, rgba(200,200,255,0.7), transparent),
+        radial-gradient(4px 4px at 30% 80%, rgba(255,220,150,0.5), transparent),
+        radial-gradient(3px 3px at 35% 42%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(3.6px 3.6px at 42% 25%, rgba(0,229,255,0.4), transparent),
+        radial-gradient(3px 3px at 48% 72%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(4px 4px at 55% 8%, rgba(255,240,200,0.6), transparent),
+        radial-gradient(3px 3px at 60% 55%, rgba(200,200,255,0.6), transparent),
+        radial-gradient(3.6px 3.6px at 65% 90%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(3px 3px at 72% 30%, rgba(57,255,20,0.25), transparent),
+        radial-gradient(4px 4px at 78% 65%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(3px 3px at 82% 18%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(3.6px 3.6px at 88% 48%, rgba(0,229,255,0.4), transparent),
+        radial-gradient(3px 3px at 92% 72%, rgba(255,220,150,0.5), transparent),
+        radial-gradient(4px 4px at 96% 10%, rgba(255,255,255,0.6), transparent);
       animation: drift 110s linear infinite;
     }
 
-    /* 가까운 밝은 별 — 반짝임 */
+    /* 가까운 밝은 별 — 크고 글로우 + 반짝임 */
     .starfield .layer-3 {
       background:
-        radial-gradient(2px 2px at 7% 40%, rgba(255, 255, 255, 0.9), transparent),
-        radial-gradient(2.5px 2.5px at 22% 18%, rgba(200, 220, 255, 1), transparent),
-        radial-gradient(2px 2px at 40% 75%, rgba(255, 240, 200, 0.8), transparent),
-        radial-gradient(2.5px 2.5px at 60% 10%, rgba(255, 255, 255, 0.9), transparent),
-        radial-gradient(2px 2px at 75% 55%, rgba(200, 200, 255, 0.8), transparent),
-        radial-gradient(2.5px 2.5px at 90% 85%, rgba(255, 248, 231, 0.9), transparent);
-      animation: drift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
+        radial-gradient(6px 6px at 4% 20%, rgba(255,255,255,1), rgba(255,255,255,0.2) 50%, transparent),
+        radial-gradient(5px 5px at 12% 65%, rgba(200,220,255,0.9), rgba(200,220,255,0.15) 50%, transparent),
+        radial-gradient(7px 7px at 22% 40%, rgba(255,248,231,1), rgba(255,220,150,0.2) 50%, transparent),
+        radial-gradient(5px 5px at 33% 85%, rgba(255,255,255,0.9), rgba(255,255,255,0.15) 50%, transparent),
+        radial-gradient(6px 6px at 45% 15%, rgba(200,200,255,1), rgba(200,200,255,0.2) 50%, transparent),
+        radial-gradient(5px 5px at 52% 70%, rgba(255,240,200,0.9), rgba(255,220,150,0.15) 50%, transparent),
+        radial-gradient(6px 6px at 63% 30%, rgba(255,255,255,1), rgba(255,255,255,0.2) 50%, transparent),
+        radial-gradient(7px 7px at 75% 55%, rgba(0,229,255,0.8), rgba(0,229,255,0.1) 50%, transparent),
+        radial-gradient(5px 5px at 85% 80%, rgba(255,248,231,0.9), rgba(255,220,150,0.15) 50%, transparent),
+        radial-gradient(6px 6px at 93% 25%, rgba(255,255,255,1), rgba(255,255,255,0.2) 50%, transparent);
+      animation: drift 150s linear infinite, twinkle 4s ease-in-out infinite alternate;
     }
+
 
     @keyframes drift {
       from {
@@ -1577,8 +1681,286 @@
 
     /* ── CTA ── */
     .cta-section {
-      padding: 20px 24px 120px;
+      padding: 20px 24px 80px;
       text-align: center;
+    }
+
+    /* ── My Mission Generator ── */
+    .my-mission {
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .my-mission-box {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .my-mission-label {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 3px;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .my-mission h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .my-mission h2 .em-green { color: var(--accent-green); }
+
+    .my-mission .sub {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .mission-input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      padding: 16px 20px;
+      line-height: 1.7;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .mission-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .mission-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .mission-gen-btn {
+      display: inline-block;
+      margin-top: 16px;
+      background: linear-gradient(135deg, #ff8800, #ff6b2b);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 0.95rem;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 15px rgba(255, 107, 43, 0.3);
+    }
+
+    .mission-gen-btn:hover {
+      background: linear-gradient(135deg, #ffaa33, #ff8800);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 136, 0, 0.4);
+    }
+
+    /* Generated Card */
+    .mission-card-result {
+      display: none;
+      margin-top: 32px;
+    }
+
+    .mission-card-result.active { display: block; }
+
+    .mission-card-visual {
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, #050520 0%, #0a0a35 30%, #0d0828 60%, #050520 100%);
+      border: 1px solid rgba(255, 180, 60, 0.15);
+      padding: 48px 32px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 태양 (CSS Sun with Corona) */
+    .mission-card-visual .sun {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #fff8e1, #ffcc02 30%, #ff8800 60%, #ff4400 80%, transparent 100%);
+      box-shadow:
+        0 0 20px 8px rgba(255, 200, 60, 0.5),
+        0 0 60px 20px rgba(255, 150, 30, 0.25),
+        0 0 120px 50px rgba(255, 100, 0, 0.1),
+        0 0 200px 80px rgba(255, 80, 0, 0.05);
+      animation: sun-pulse 5s ease-in-out infinite;
+    }
+
+    .mission-card-visual .sun::after {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border-radius: 50%;
+      background: radial-gradient(circle, transparent 40%, rgba(255, 180, 60, 0.08) 60%, transparent 70%);
+      animation: corona-rotate 20s linear infinite;
+    }
+
+    @keyframes sun-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 0.9; }
+    }
+
+    @keyframes corona-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 배경 별 + 광선 */
+    .mission-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(0,229,255,0.4), transparent),
+        radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 25% 45%, rgba(255,220,150,0.6), transparent),
+        radial-gradient(1px 1px at 65% 85%, rgba(255,255,255,0.3), transparent),
+        /* 태양 빛줄기 (대각선) */
+        linear-gradient(225deg, rgba(255,180,60,0.06) 0%, transparent 40%),
+        linear-gradient(210deg, rgba(255,150,30,0.04) 0%, transparent 35%);
+      pointer-events: none;
+    }
+
+    /* 하단 그래디언트 라인 */
+    .mission-card-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,180,60,0.4), var(--accent-cyan), rgba(57,255,20,0.3), transparent);
+    }
+
+    .mcv-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--accent-orange);
+      border: 1px solid rgba(255, 107, 43, 0.4);
+      display: inline-block;
+      padding: 4px 16px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(255, 107, 43, 0.3);
+    }
+
+    .mcv-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--accent-cyan);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+
+    .mcv-text {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.8;
+      word-break: keep-all;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .mcv-footer {
+      margin-top: 28px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mcv-footer .inf {
+      color: var(--accent-green);
+    }
+
+    /* Share Buttons */
+    .share-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border: 1px solid rgba(255, 180, 60, 0.2);
+      background: rgba(255, 180, 60, 0.06);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .share-btn:hover {
+      background: rgba(255, 180, 60, 0.12);
+      border-color: rgba(255, 180, 60, 0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(255, 150, 30, 0.1);
+    }
+
+    .share-btn.copied {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      background: rgba(57, 255, 20, 0.06);
+    }
+
+    /* Shared mission (from URL param) */
+    .shared-mission-banner {
+      display: none;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .shared-mission-banner.active { display: block; }
+
+    .smb-from {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      .my-mission h2 { font-size: 1.2rem; }
+      .mission-card-visual { padding: 40px 24px 32px; }
+      .mission-card-visual .sun { width: 90px; height: 90px; top: -20px; right: -20px; }
+      .mcv-text { font-size: 1rem; }
+      .share-btns { gap: 8px; }
+      .share-btn { padding: 8px 16px; font-size: 0.78rem; }
     }
 
     .cta-btn {
@@ -1736,6 +2118,9 @@
   <!-- Tau Ceti Star -->
   <div class="tau-ceti" aria-hidden="true"></div>
 
+  <!-- Page Sun (왼쪽 태양) -->
+  <div class="page-sun" aria-hidden="true"></div>
+
   <!-- Starfield (3 layers) -->
   <div class="starfield" aria-hidden="true">
     <div class="layer layer-1"></div>
@@ -1785,6 +2170,18 @@
         이렇게 도움이 됐을거 같아요.(확신)
       </p>
     </section>
+
+    <!-- 공유 링크로 들어온 경우 표시 -->
+    <div class="shared-mission-banner fade-in" id="sharedBanner">
+      <div class="smb-from">누군가의 헤일메리 미션이 도착했어요 👇</div>
+      <div class="mission-card-visual" id="sharedCardVisual">
+          <div class="sun"></div>
+        <div class="mcv-badge">TOP SECRET</div>
+        <div class="mcv-title">MY HAIL MARY PROJECT 2026</div>
+        <div class="mcv-text" id="sharedText"></div>
+        <div class="mcv-footer">inflearn.com · <span class="inf">프로젝트 인프런메리</span></div>
+      </div>
+    </div>
 
     <div class="divider"><span>· · · MISSION BRIEFING · · ·</span></div>
 
@@ -2731,11 +3128,37 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section fade-in">
-      <a href="https://www.inflearn.com?infPartner=true&coupon_code=%EB%82%98%EC%9D%98%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC%EB%AF%B8%EC%85%98%EC%84%B1%EA%B3%B5%EC%9D%84%EC%9C%84%ED%95%B4&coupon_issuer=%EC%9A%B0%EC%A0%95%EC%99%95%EB%A1%9C%ED%82%A4"
-        class="cta-btn">나의 미션 시작하기 →</a>
+    <!-- My Hail Mary Mission -->
+    <section class="my-mission fade-in">
+      <div class="my-mission-box">
+        <div class="my-mission-label">YOUR MISSION</div>
+        <h2>올해, 나만의<br><span class="em-green">헤일메리 프로젝트</span>는?</h2>
+        <p class="sub">
+          이루기 쉽지 않지만 반드시 해내고 싶은 목표를 적어보세요.<br>
+          좋은 공유를 해주신 분들은 찾아내서 깜짝 선물을 드릴수도 있어요!
+        </p>
+        <textarea class="mission-input" rows="3" maxlength="100"
+          placeholder="예) 올해 안에 사이드 프로젝트로 월 100만원 수익 만들기"></textarea>
+        <br>
+        <button class="mission-gen-btn" onclick="generateMissionCard()">나의 목표 공유하기 🚀</button>
+
+        <div class="mission-card-result" id="missionResult">
+          <div class="mission-card-visual" id="missionCardVisual">
+            <div class="sun"></div>
+            <div class="mcv-badge">TOP SECRET</div>
+            <div class="mcv-title">MY HAIL MARY PROJECT 2026</div>
+            <div class="mcv-text" id="missionText"></div>
+            <div class="mcv-footer">inflearn.com · <span class="inf">프로젝트 인프런메리</span></div>
+          </div>
+          <div class="share-btns">
+            <button class="share-btn" onclick="shareMission('copy')">🔗 링크 복사</button>
+            <button class="share-btn" onclick="shareMission('x')">𝕏 공유</button>
+            <button class="share-btn" onclick="shareMission('share')">📤 공유하기</button>
+          </div>
+        </div>
+      </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -2763,6 +3186,64 @@
 
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     });
+  </script>
+
+  <!-- Mission Share Script -->
+  <script>
+    // 미션 카드 생성
+    function generateMissionCard() {
+      const input = document.querySelector('.mission-input');
+      const text = input.value.trim();
+      if (!text) { input.focus(); return; }
+
+      document.getElementById('missionText').textContent = text;
+      const result = document.getElementById('missionResult');
+      result.classList.add('active');
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // 공유 기능
+    function shareMission(type) {
+      const text = document.getElementById('missionText').textContent;
+      const encoded = encodeURIComponent(text);
+      const url = window.location.origin + window.location.pathname + '?mission=' + encoded;
+      const shareText = '🚀 나의 2026 헤일메리 프로젝트: ' + text + '\n\n당신의 헤일메리 미션은?\n' + url;
+
+      if (type === 'copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = event.target;
+          btn.textContent = '✅ 복사됨!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = '🔗 링크 복사'; btn.classList.remove('copied'); }, 2000);
+        });
+      } else if (type === 'x') {
+        window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(shareText), '_blank');
+      } else if (type === 'share') {
+        if (navigator.share) {
+          navigator.share({ title: '나의 헤일메리 프로젝트', text: '🚀 ' + text, url: url });
+        } else {
+          navigator.clipboard.writeText(url).then(() => {
+            const btn = event.target;
+            btn.textContent = '✅ 링크 복사됨!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = '📤 공유하기'; btn.classList.remove('copied'); }, 2000);
+          });
+        }
+      }
+    }
+
+    // URL 파라미터로 공유된 미션 표시
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const mission = params.get('mission');
+      if (mission) {
+        const banner = document.getElementById('sharedBanner');
+        document.getElementById('sharedText').textContent = mission;
+        banner.classList.add('active');
+        // textarea에도 미리 채워두기
+        document.querySelector('.mission-input').value = mission;
+      }
+    })();
   </script>
 
 </body>
