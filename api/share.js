@@ -3,6 +3,7 @@ export default function handler(req, res) {
   const decodedMission = decodeURIComponent(mission);
   const safeText = decodedMission.replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const pageUrl = `https://hail-mary-nine.vercel.app/?mission=${encodeURIComponent(decodedMission)}`;
+  const ogImageUrl = `https://hail-mary-nine.vercel.app/api/og?mission=${encodeURIComponent(decodedMission)}`;
 
   const html = `<!DOCTYPE html>
 <html lang="ko">
@@ -10,12 +11,16 @@ export default function handler(req, res) {
   <meta charset="UTF-8">
   <meta property="og:title" content="🚀 나의 2026 헤일메리 프로젝트">
   <meta property="og:description" content="${safeText}">
+  <meta property="og:image" content="${ogImageUrl}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${pageUrl}">
   <meta property="og:site_name" content="프로젝트 인프런메리">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="🚀 나의 2026 헤일메리 프로젝트">
   <meta name="twitter:description" content="${safeText}">
+  <meta name="twitter:image" content="${ogImageUrl}">
   <meta http-equiv="refresh" content="0;url=${pageUrl}">
   <title>🚀 ${safeText} — 프로젝트 인프런메리</title>
 </head>
